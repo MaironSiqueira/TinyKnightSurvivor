@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cdgx14olhb8ds"]
 
+[ext_resource type="Script" path="res://scripts/ritual.cs" id="1_6l576"]
 [ext_resource type="Texture2D" uid="uid://oywqi21cp72a" path="res://scenes/PNG (Transparent)/circle_03.png" id="1_25lne"]
-[ext_resource type="Script" path="res://Misc/ritual.cs" id="1_cqa2t"]
 [ext_resource type="Texture2D" uid="uid://bphksq8rch2la" path="res://scenes/PNG (Transparent)/light_02.png" id="2_5k1th"]
 [ext_resource type="Texture2D" uid="uid://dbybs3vp4etst" path="res://scenes/PNG (Transparent)/magic_02.png" id="3_cjq4q"]
 
@@ -108,7 +108,7 @@ radius = 167.72
 
 [node name="Ritual" type="Node2D"]
 modulate = Color(1, 0.596078, 0.803922, 1)
-script = ExtResource("1_cqa2t")
+script = ExtResource("1_6l576")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -120,17 +120,15 @@ autoplay = "default"
 scale = Vector2(1e-05, 1e-05)
 
 [node name="Circle03" type="Sprite2D" parent="images"]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, 0.0196078)
 scale = Vector2(0.689174, 0.700054)
 texture = ExtResource("1_25lne")
 
 [node name="Light02" type="Sprite2D" parent="images"]
-rotation = -6.28319
-scale = Vector2(0.59, 0.59)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("2_5k1th")
 
 [node name="Magic02" type="Sprite2D" parent="images"]
-rotation = 7.85398
 scale = Vector2(1.22728, 1.23261)
 texture = ExtResource("3_cjq4q")
 

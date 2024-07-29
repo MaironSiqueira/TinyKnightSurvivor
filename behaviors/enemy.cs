@@ -6,21 +6,23 @@ using System.Collections.Generic;
 
 public partial class enemy : CharacterBody2D
 {
+	[ExportCategory ("Misc")]
 	[Export]
 	public float dropChance = 0.1f;
+	[Export]
+	public int health = 10;
 
+	[ExportCategory ("Lists")]
 	[Export]
 	public Godot.Collections.Array<PackedScene> dropItems;
 	[Export]
 	public Godot.Collections.Array<float> dropChancess;
 
-	[Export]
-	public int health = 10;
-
+	
+	//Scenes
 	public PackedScene deathPrefab;
 	public PackedScene damageDigitPrefab;
 	public AnimatedSprite2D character;
-
 	public Marker2D damageDigitMarker;
 
 	public override void _Ready()

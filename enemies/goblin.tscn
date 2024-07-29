@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://wgvkap20fsmy"]
+[gd_scene load_steps=14 format=3 uid="uid://btpgj1oia74ha"]
 
 [ext_resource type="Script" path="res://behaviors/enemy.cs" id="1_3kdll"]
+[ext_resource type="PackedScene" uid="uid://b13cysf48wlkk" path="res://Misc/meat.tscn" id="2_5o45x"]
 [ext_resource type="Texture2D" uid="uid://rj5jim7bq8h8" path="res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="3_a6ip0"]
+[ext_resource type="PackedScene" uid="uid://g3gmd5pmhpfb" path="res://Misc/goldenMeat.tscn" id="3_o0khk"]
 [ext_resource type="Script" path="res://behaviors/followPlayerC.cs" id="4_ecjm3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_htg6x"]
@@ -64,8 +66,9 @@ scale = Vector2(1.90821, 1.90821)
 motion_mode = 1
 script = ExtResource("1_3kdll")
 dropChance = 0.2
-health = 20
+dropItems = Array[PackedScene]([ExtResource("2_5o45x"), ExtResource("3_o0khk")])
 dropChancess = Array[float]([0.8, 0.2])
+health = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -8)

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class mobSpawner : Node2D
 {
 	public List<PackedScene> creaturesList = new List<PackedScene>();
-[Export]
+	[Export]
 	public float mobsPerMinute = 30.0f;
 
 	private PathFollow2D pathFollow2D;
@@ -15,15 +15,15 @@ public partial class mobSpawner : Node2D
 	{
 		pathFollow2D = GetNode<PathFollow2D>("Path2D/%PathFollow2D");
 
-		creaturesList.Add((PackedScene)ResourceLoader.Load("res://behaviors/goblin.tscn"));
-		creaturesList.Add((PackedScene)ResourceLoader.Load("res://behaviors/pawn.tscn"));
-		creaturesList.Add((PackedScene)ResourceLoader.Load("res://behaviors/sheep.tscn"));
+		creaturesList.Add((PackedScene)ResourceLoader.Load("res://enemies/goblin.tscn"));
+		creaturesList.Add((PackedScene)ResourceLoader.Load("res://enemies/pawn.tscn"));
+		creaturesList.Add((PackedScene)ResourceLoader.Load("res://enemies/sheep.tscn"));
 	}
 
 	public override void _Process(double delta)
 	{
-		if(GameManager.isGameOver) return;
-		
+		if (GameManager.isGameOver) return;
+
 		cooldown -= (float)delta;
 		if (cooldown > 0.0f)
 		{
@@ -39,7 +39,7 @@ public partial class mobSpawner : Node2D
 		{
 			Position = point,
 			CollisionMask = 0b1001
-			
+
 		};
 
 		Godot.Collections.Array result = (Godot.Collections.Array)worldState.IntersectPoint(parameters, 1);

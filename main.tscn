@@ -394,5 +394,6 @@ breakIntensity = 0.33
 
 [node name="MobSpawner" parent="." instance=ExtResource("2_rnuwd")]
 position = Vector2(596, 343)
+mobsPerMinute = null
 
 [node name="GameUI" parent="." instance=ExtResource("3_cmfgc")]

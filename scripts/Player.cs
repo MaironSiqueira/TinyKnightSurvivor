@@ -4,39 +4,46 @@ using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody2D
 {
-	[Export]
-	public int swordDamage = 2;
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
-
-	[Export]
-	public int health = 100;
-	public ProgressBar healthProgressbar;
-
-	public PackedScene deathPrefab;
-	[Export]
-	int maxHealth = 100;
+	[ExportCategory("Damages")]
 	[Export]
 	public int ritualDamage = 1;
 	[Export]
+	public int swordDamage = 2;
+
+	[ExportCategory("Life")]
+	[Export]
+	public int health = 100;
+	[Export]
+	int maxHealth = 100;
+
+
+
+	public const float Speed = 300.0f;
+	public const float JumpVelocity = -400.0f;
+
+
+
+
+
+	[Export]
 	public float ritualInterval = 15.0f;
 
-	public PackedScene ritualScene;
+
 	private bool isAttacking = false;
 	public float attackCd = 0.0f;
 	public float hitBoxCd = 0.0f;
 	public float ritualCd = 0.0f;
 	public bool isRunning = false;
 
+	public ProgressBar healthProgressbar;
+	public PackedScene deathPrefab;
+	public PackedScene ritualScene;
 	private AnimationPlayer player;
 	private Sprite2D character;
-
 	private Area2D swordArea;
 	private Area2D hitBoxArea;
-
 	private enemy enemy;
 	private ritual ritual;
-
 	public GameManager gameManager;
 
 	[Signal]
@@ -45,23 +52,23 @@ public partial class Player : CharacterBody2D
 	{
 
 		try
-        {
-            gameManager = GetNode<GameManager>("/root/GameManager");
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr($"Erro ao encontrar GameManager: {e.Message}");
-        }
+		{
+			gameManager = GetNode<GameManager>("/root/GameManager");
+		}
+		catch (Exception e)
+		{
+			GD.PrintErr($"Erro ao encontrar GameManager: {e.Message}");
+		}
 
-        // Verifique se o GameManager foi encontrado
-        if (gameManager != null)
-        {
-            GD.Print("GameManager encontrado no player!");
-        }
-        else
-        {
-            GD.PrintErr("GameManager não encontrado!");
-        }
+		// Verifique se o GameManager foi encontrado
+		if (gameManager != null)
+		{
+			GD.Print("GameManager encontrado no player!");
+		}
+		else
+		{
+			GD.PrintErr("GameManager não encontrado!");
+		}
 
 		player = GetNode<AnimationPlayer>("AnimationPlayer");
 		character = GetNode<Sprite2D>("Sprite2D");
@@ -70,7 +77,7 @@ public partial class Player : CharacterBody2D
 		hitBoxArea = GetNode<Area2D>("HitBoxArea");
 		ritualScene = (PackedScene)ResourceLoader.Load("res://Misc/ritual.tscn");
 		healthProgressbar = GetNode<ProgressBar>("HealthProgressBar");
-		
+
 		GameManager.player = this;
 	}
 	public override void _PhysicsProcess(double delta)
@@ -267,15 +274,15 @@ public partial class Player : CharacterBody2D
 	public void die()
 	{
 		if (gameManager != null)
-        {
-            gameManager.EndGame();
+		{
+			gameManager.EndGame();
 			GD.Print("encontrou o engGame no player");
-        }
-        else
-        {
-            GD.PrintErr("GameManager não encontrado ao tentar finalizar o jogo!");
-        }
-		
+		}
+		else
+		{
+			GD.PrintErr("GameManager não encontrado ao tentar finalizar o jogo!");
+		}
+
 		Node2D deathInstance = (Node2D)deathPrefab.Instantiate();
 		GetParent().AddChild(deathInstance);
 

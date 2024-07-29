@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgoyf332d2whj"]
 
-[ext_resource type="Script" path="res://scenes/mobSpawner.cs" id="1_drrib"]
+[ext_resource type="Script" path="res://Systems/mobSpawner.cs" id="1_wtwuf"]
 
 [sub_resource type="Curve2D" id="Curve2D_kx7g4"]
 _data = {
@@ -9,8 +9,7 @@ _data = {
 point_count = 11
 
 [node name="MobSpawner" type="Node2D"]
-script = ExtResource("1_drrib")
-mobsPerMinute = 30.0
+script = ExtResource("1_wtwuf")
 
 [node name="Path2D" type="Path2D" parent="."]
 position = Vector2(-10, -109)

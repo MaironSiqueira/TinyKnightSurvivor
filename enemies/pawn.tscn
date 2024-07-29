@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://5cwim5p2jnev"]
+[gd_scene load_steps=13 format=3 uid="uid://pol170qnr5rj"]
 
 [ext_resource type="Script" path="res://behaviors/enemy.cs" id="1_efr4s"]
 [ext_resource type="Texture2D" uid="uid://131a5yhyjcih" path="res://Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Troops/Pawn/Red/Pawn_Red.png" id="1_v18kv"]
@@ -62,8 +62,8 @@ radius = 15.0
 position = Vector2(-2, 2)
 motion_mode = 1
 script = ExtResource("1_efr4s")
-health = 2
 dropItems = Array[PackedScene]([ExtResource("2_ni51c")])
+health = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5p6ad")
