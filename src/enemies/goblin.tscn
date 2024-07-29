@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://wgvkap20fsmy"]
+
+[ext_resource type="Script" path="res://src/behaviors/enemy.cs" id="1_nirvn"]
+[ext_resource type="Texture2D" uid="uid://rj5jim7bq8h8" path="res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Red/Torch_Red.png" id="2_ylifu"]
+[ext_resource type="Script" path="res://src/behaviors/followPlayerC.cs" id="3_ncnks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htg6x"]
+atlas = ExtResource("2_ylifu")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0y2h2"]
+atlas = ExtResource("2_ylifu")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w85mn"]
+atlas = ExtResource("2_ylifu")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j6mu"]
+atlas = ExtResource("2_ylifu")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n1jo"]
+atlas = ExtResource("2_ylifu")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y687u"]
+atlas = ExtResource("2_ylifu")
+region = Rect2(960, 192, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5p6ad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htg6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0y2h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w85mn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j6mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n1jo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y687u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gglt5"]
+radius = 9.95602
+height = 36.7092
+
+[node name="Goblin" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(-2, 2)
+scale = Vector2(1.90821, 1.90821)
+motion_mode = 1
+script = ExtResource("1_nirvn")
+dropChance = 0.2
+health = 20
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, -8)
+sprite_frames = SubResource("SpriteFrames_5p6ad")
+autoplay = "default"
+frame_progress = 0.818964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.66836, 14.1494)
+rotation = -1.55689
+shape = SubResource("CapsuleShape2D_gglt5")
+
+[node name="followPlayer" type="Node2D" parent="."]
+script = ExtResource("3_ncnks")
+speed = 0.4
+
+[node name="DamageMarker" type="Marker2D" parent="."]
+position = Vector2(1.0481, -46.1165)

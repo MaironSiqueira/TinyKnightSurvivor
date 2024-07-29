@@ -15,7 +15,7 @@ public partial class main : Node2D
 	public override void _Ready()
 	{
 
-		gameOverUiTemplate = (PackedScene)ResourceLoader.Load("res://gameUI/GamerOverUI.tscn");
+		gameOverUiTemplate = (PackedScene)ResourceLoader.Load("res://src/gameUI/GamerOverUI.tscn");
 		GD.Print("main _Ready called");
 		try
 		{

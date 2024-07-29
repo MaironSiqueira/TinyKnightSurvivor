@@ -1,13 +1,10 @@
 [gd_scene load_steps=41 format=3 uid="uid://d0gu0a4km0fjp"]
 
 [ext_resource type="Script" path="res://main.cs" id="1_7sum8"]
-[ext_resource type="PackedScene" uid="uid://b3n0ourvta55x" path="res://scenes/player.tscn" id="1_cwlw2"]
 [ext_resource type="Texture2D" uid="uid://g8dm8un8vc14" path="res://Tiny Swords/Tiny Swords (Update 010)/Terrain/Ground/Tilemap_Flat.png" id="1_sy0ht"]
 [ext_resource type="Texture2D" uid="uid://id4l2m25r2rg" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/01.png" id="2_jdng6"]
-[ext_resource type="PackedScene" uid="uid://dgoyf332d2whj" path="res://scenes/mob_spawner.tscn" id="2_rnuwd"]
-[ext_resource type="PackedScene" uid="uid://b7j8gqss768cw" path="res://gameUI/GamerOverUI.tscn" id="2_w56w2"]
+[ext_resource type="PackedScene" uid="uid://b7j8gqss768cw" path="res://src/gameUI/GamerOverUI.tscn" id="2_tmbja"]
 [ext_resource type="Texture2D" uid="uid://ba2bp1806bdlr" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/13.png" id="3_aac5i"]
-[ext_resource type="PackedScene" uid="uid://u0y3n5w6l2y2" path="res://gameUI/gameUI.tscn" id="3_cmfgc"]
 [ext_resource type="Texture2D" uid="uid://qrl0kvg2n3ud" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/14.png" id="4_2lvtr"]
 [ext_resource type="Texture2D" uid="uid://cl60y1yqdaplw" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/15.png" id="5_oc3as"]
 [ext_resource type="Texture2D" uid="uid://c38pahuor4tnk" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/16.png" id="6_byy68"]
@@ -20,8 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://dex1rd80ncbn4" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/10.png" id="13_d3sci"]
 [ext_resource type="Texture2D" uid="uid://swdrblmuidhg" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/11.png" id="14_85fuy"]
 [ext_resource type="Texture2D" uid="uid://7f4now4jkxcc" path="res://Tiny Swords/Tiny Swords (Update 010)/Deco/12.png" id="15_cdhxg"]
-[ext_resource type="Script" path="res://Systems/difficultSystem.cs" id="18_77e8j"]
-[ext_resource type="PackedScene" uid="uid://bxuhde0benjsr" path="res://Misc/tree.tscn" id="20_ltfla"]
+[ext_resource type="PackedScene" uid="uid://b3n0ourvta55x" path="res://src/scenes/player.tscn" id="18_f5mpd"]
+[ext_resource type="Script" path="res://src/Systems/difficultSystem.cs" id="19_qptnv"]
+[ext_resource type="PackedScene" uid="uid://dgoyf332d2whj" path="res://src/scenes/mob_spawner.tscn" id="20_sgk4q"]
+[ext_resource type="PackedScene" uid="uid://u0y3n5w6l2y2" path="res://src/gameUI/gameUI.tscn" id="21_hgad0"]
+[ext_resource type="PackedScene" uid="uid://bxuhde0benjsr" path="res://src/Misc/tree.tscn" id="23_mc1f8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tu3yg"]
 texture = ExtResource("1_sy0ht")
@@ -161,7 +161,7 @@ y_sort_enabled = true
 scale = Vector2(1.06296, 1.14994)
 script = ExtResource("1_7sum8")
 gameUI = NodePath("GameUI")
-gameOverUiTemplate = ExtResource("2_w56w2")
+gameOverUiTemplate = ExtResource("2_tmbja")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -201,199 +201,215 @@ position = Vector2(-3171, 463)
 shape = SubResource("RectangleShape2D_kjnek")
 debug_color = Color(0.878044, 0.000393325, 0.82848, 0.42)
 
-[node name="player" parent="." instance=ExtResource("1_cwlw2")]
-position = Vector2(596, 343)
+[node name="player2" parent="." instance=ExtResource("18_f5mpd")]
+position = Vector2(859.863, 442.632)
 
-[node name="RemoteTransform2D - Camera" type="RemoteTransform2D" parent="player"]
-remote_path = NodePath("../../Camera2D")
-update_rotation = false
-update_scale = false
-
-[node name="RemoteTransform2D - MobSpawner" type="RemoteTransform2D" parent="player"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player2"]
 remote_path = NodePath("../../MobSpawner")
-update_rotation = false
-update_scale = false
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="player2"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(596, 343)
-
-[node name="Trees" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="Tress" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-224, 168)
-
-[node name="Tress45" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-2106, 2109)
-
-[node name="Tress46" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1826, 2075)
-
-[node name="Tress47" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1953, 1592)
-
-[node name="Tress48" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1614, 2329)
-
-[node name="Tress49" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-927, 1931)
-
-[node name="Tress50" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(99, 2151)
-
-[node name="Tress51" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(3125, 863)
-
-[node name="Tress52" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(3303, -213)
-
-[node name="Tress53" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(3142, -1383)
-
-[node name="Tress54" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1715, -1332)
-
-[node name="Tress55" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-893, -1324)
-
-[node name="Tress2" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-44, 176)
-
-[node name="Tress3" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-176, -48)
-
-[node name="Tress4" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-220, 864)
-
-[node name="Tress5" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-40, 872)
-
-[node name="Tress6" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-172, 648)
-
-[node name="Tress7" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1388, 1092)
-
-[node name="Tress8" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1568, 1100)
-
-[node name="Tress9" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1436, 876)
-
-[node name="Tress10" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1480, 284)
-
-[node name="Tress11" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1660, 292)
-
-[node name="Tress12" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1528, 68)
-
-[node name="Tress13" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1320, -284)
-
-[node name="Tress14" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1500, -276)
-
-[node name="Tress15" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1368, -500)
-
-[node name="Tress16" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(2760, 1652)
-
-[node name="Tress17" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(2940, 1660)
-
-[node name="Tress18" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(2808, 1436)
-
-[node name="Tress19" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-968, 1660)
-
-[node name="Tress20" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-788, 1668)
-
-[node name="Tress21" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-920, 1444)
-
-[node name="Tress22" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(824, 1956)
-
-[node name="Tress23" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1004, 1964)
-
-[node name="Tress24" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(872, 1740)
-
-[node name="Tress25" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1472, -372)
-
-[node name="Tress26" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1292, -364)
-
-[node name="Tress27" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1424, -588)
-
-[node name="Tress28" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-2056, 644)
-
-[node name="Tress29" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1876, 652)
-
-[node name="Tress30" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-2008, 428)
-
-[node name="Tress31" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(360, -772)
-
-[node name="Tress32" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(540, -764)
-
-[node name="Tress33" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(408, -988)
-
-[node name="Tress34" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(3032, -604)
-
-[node name="Tress37" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(1024, 292)
-
-[node name="Tress38" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(168, 216)
-
-[node name="Tress39" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(292, 506)
-
-[node name="Tress40" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(473, 1353)
-
-[node name="Tress41" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(2086, 1871)
-
-[node name="Tress42" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(2638, 472)
-
-[node name="Tress43" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-784, -747)
-
-[node name="Tress44" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(-1152, 421)
-
-[node name="Tress35" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(3212, -596)
-
-[node name="Tress36" parent="Trees" instance=ExtResource("20_ltfla")]
-position = Vector2(3080, -820)
+position = Vector2(859.863, 442.632)
 
 [node name="DifficultSystem" type="Node2D" parent="." node_paths=PackedStringArray("mobSpawner")]
-script = ExtResource("18_77e8j")
+script = ExtResource("19_qptnv")
 mobSpawner = NodePath("../MobSpawner")
 initialSpawnRate = 30.0
 spawnRatePerMinute = 60.0
 breakIntensity = 0.33
 
-[node name="MobSpawner" parent="." instance=ExtResource("2_rnuwd")]
-position = Vector2(596, 343)
-mobsPerMinute = null
+[node name="MobSpawner" parent="." instance=ExtResource("20_sgk4q")]
+position = Vector2(859.863, 442.632)
 
-[node name="GameUI" parent="." instance=ExtResource("3_cmfgc")]
+[node name="GameUI" parent="." instance=ExtResource("21_hgad0")]
+
+[node name="Tress" parent="." instance=ExtResource("23_mc1f8")]
+position = Vector2(360.315, 442.632)
+
+[node name="Tress2" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-152.405, 9.56567)
+
+[node name="Tress3" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-69.6169, -126.963)
+
+[node name="Tress4" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(815.647, -468.72)
+
+[node name="Tress5" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(663.242, -459.154)
+
+[node name="Tress6" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(746.03, -595.683)
+
+[node name="Tress7" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(934.184, -101.744)
+
+[node name="Tress8" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(781.779, -92.1787)
+
+[node name="Tress9" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(864.567, -228.708)
+
+[node name="Tress10" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(3.76306, -598.292)
+
+[node name="Tress11" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-148.642, -588.726)
+
+[node name="Tress12" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-65.8539, -725.255)
+
+[node name="Tress13" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(826.936, -995.704)
+
+[node name="Tress14" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(674.531, -986.138)
+
+[node name="Tress15" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(757.319, -1122.67)
+
+[node name="Tress16" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1495.82, -1099.19)
+
+[node name="Tress17" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1648.23, -1089.62)
+
+[node name="Tress18" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1565.44, -1226.15)
+
+[node name="Tress19" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1952.1, -631.337)
+
+[node name="Tress20" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-2104.5, -621.771)
+
+[node name="Tress21" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-2021.71, -758.3)
+
+[node name="Tress22" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1352.83, -664.382)
+
+[node name="Tress23" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1505.23, -654.817)
+
+[node name="Tress24" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1422.44, -791.346)
+
+[node name="Tress25" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1034.85, -1061.79)
+
+[node name="Tress26" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1187.25, -1052.23)
+
+[node name="Tress27" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1104.46, -1188.76)
+
+[node name="Tress28" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-2176, -1462.69)
+
+[node name="Tress29" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-2328.4, -1453.12)
+
+[node name="Tress30" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-2245.62, -1589.65)
+
+[node name="Tress31" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1513.7, -1545.3)
+
+[node name="Tress32" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1666.1, -1535.73)
+
+[node name="Tress33" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1583.31, -1672.26)
+
+[node name="Tress34" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1746.07, 133.92)
+
+[node name="Tress35" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1898.47, 143.486)
+
+[node name="Tress36" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1815.68, 6.95685)
+
+[node name="Tress40" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-906.902, -20.8707)
+
+[node name="Tress41" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(1253.1, 434.805)
+
+[node name="Tress42" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(695.228, 202.619)
+
+[node name="Tress43" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-1183.49, 954.832)
+
+[node name="Tress44" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-2080.04, 1256.59)
+
+[node name="Tress45" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-2080.04, 1256.59)
+
+[node name="Tress46" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-718.748, 1423.55)
+
+[node name="Tress47" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(381.012, 1429.64)
+
+[node name="Tress48" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(823.173, 859.175)
+
+[node name="Tress49" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(1445.96, 1249.63)
+
+[node name="Tress50" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(520.245, 927.005)
+
+[node name="Tress51" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2015.13, 660.904)
+
+[node name="Tress52" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2256.91, -231.316)
+
+[node name="Tress53" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2739.52, -57.3943)
+
+[node name="Tress54" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2625.69, -757.431)
+
+[node name="Tress55" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2404.61, -1160.06)
+
+[node name="Tress56" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(1954.92, -1153.97)
+
+[node name="Tress57" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2109.2, -794.824)
+
+[node name="Tress58" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2732.93, -1538.34)
+
+[node name="Tress59" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2706.59, 1256.59)
+
+[node name="Tress60" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2365.09, 1436.6)
+
+[node name="Tress61" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(1734.78, 1591.39)
+
+[node name="Tress62" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2646.38, 1696.61)
+
+[node name="Tress63" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(2646.38, 1696.61)
+
+[node name="Tress37" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-743.208, 489.591)
+
+[node name="Tress38" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-895.612, 499.157)
+
+[node name="Tress39" parent="Tress" instance=ExtResource("23_mc1f8")]
+position = Vector2(-812.825, 362.628)

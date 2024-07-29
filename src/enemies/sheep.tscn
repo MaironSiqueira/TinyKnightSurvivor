@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://bgrnemaxr8mwy"]
+
+[ext_resource type="Script" path="res://src/behaviors/enemy.cs" id="1_m3td0"]
+[ext_resource type="Texture2D" uid="uid://fmfyuqqx21uc" path="res://Tiny Swords/Tiny Swords (Update 010)/Resources/Sheep/HappySheep_Bouncing.png" id="2_sbs47"]
+[ext_resource type="Script" path="res://src/behaviors/followPlayerC.cs" id="3_gjh47"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ce2f5"]
+atlas = ExtResource("2_sbs47")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3ubi"]
+atlas = ExtResource("2_sbs47")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj0ng"]
+atlas = ExtResource("2_sbs47")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7y7ve"]
+atlas = ExtResource("2_sbs47")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a613p"]
+atlas = ExtResource("2_sbs47")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqt6g"]
+atlas = ExtResource("2_sbs47")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5p6ad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ce2f5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3ubi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj0ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7y7ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a613p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqt6g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gglt5"]
+radius = 20.0
+height = 46.0
+
+[node name="Sheep" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(-2, 2)
+motion_mode = 1
+script = ExtResource("1_m3td0")
+dropChance = 0.025
+health = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5p6ad")
+autoplay = "default"
+frame_progress = 0.633773
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_gglt5")
+
+[node name="followPlayer" type="Node2D" parent="."]
+script = ExtResource("3_gjh47")
+speed = 2.0
+
+[node name="DamageMarker" type="Marker2D" parent="."]
+position = Vector2(2, -33)

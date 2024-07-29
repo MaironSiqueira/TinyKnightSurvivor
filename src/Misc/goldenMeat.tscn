@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://g3gmd5pmhpfb"]
+
+[ext_resource type="PackedScene" path="res://Misc/meat.tscn" id="1_r8tau"]
+[ext_resource type="Script" path="res://src/scripts/lifeRegenerator.cs" id="2_sbxy0"]
+
+[node name="Skull" instance=ExtResource("1_r8tau")]
+self_modulate = Color(2.5, 1.5, 0, 1)
+script = ExtResource("2_sbxy0")
+
+[node name="Area2D" parent="." index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+scale = Vector2(1.5, 1.5)
